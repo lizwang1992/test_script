@@ -12,7 +12,7 @@ class appOuterpay_test(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):  # 所用test运行前执行一次
-        print('----------Test Start----------')
+        print('-------AppOuterpay Test-------')
         desired_caps = {
             'platformName':'Android',
             'deviceName':'S25QBDPD225KV',
