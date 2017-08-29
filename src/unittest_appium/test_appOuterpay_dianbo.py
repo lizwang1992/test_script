@@ -37,6 +37,7 @@ class appOuterpay_test(unittest.TestCase):
         
     def tearDown(self):
         # 返回首页
+        self.driver.press_keycode(4)
         while True: 
             try:
                 back_button = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_left')

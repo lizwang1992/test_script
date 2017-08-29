@@ -38,6 +38,7 @@ class JXHD_test(unittest.TestCase):
         
     def tearDown(self):
         # 返回首页
+        self.driver.press_keycode(4)
         while True: 
             try:
                 back_button = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_left')
@@ -59,7 +60,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/parent_checkbox').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_btn_send').click()
         send_time1 = time.strftime('%Y{y}%m{m}%d{d} %H:%M').format(y='年', m='月', d='日')[0:-1]
-        time.sleep(5)
+        time.sleep(10)
         self.assertEqual(self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_type').get_attribute('name'), '通知', None)
         send_time2 = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_date').get_attribute('name')[0:-1]
         self.assertEqual(send_time1, send_time2, None)
@@ -73,6 +74,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/classCheckBox').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/choose_subjects').click()
+        time.sleep(1)
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/project_name').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/work_edit').clear()
@@ -81,7 +83,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_btn_preview').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         send_time1 = time.strftime('%Y{y}%m{m}%d{d} %H:%M').format(y='年', m='月', d='日')[0:-1]
-        time.sleep(5)
+        time.sleep(10)
         self.assertEqual(self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_type').get_attribute('name'), '作业', None)
         send_time2 = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_date').get_attribute('name')[0:-1]
         self.assertEqual(send_time1, send_time2, None)
@@ -98,7 +100,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/comment_text').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_btn_send').click()
         send_time1 = time.strftime('%Y{y}%m{m}%d{d} %H:%M').format(y='年', m='月', d='日')[0:-1]
-        time.sleep(5)
+        time.sleep(10)
         self.assertEqual(self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_type').get_attribute('name'), '评语', None)
         send_time2 = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/home_sms_date').get_attribute('name')[0:-1]
         self.assertEqual(send_time1, send_time2, None)
@@ -115,7 +117,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/announcement_edit').send_keys('公告内容')
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         send_time1 = time.strftime('%Y{y}%m{m}%d{d} %H:%M').format(y='年', m='月', d='日')[0:-1]
-        time.sleep(6)
+        time.sleep(15)
         self.driver.find_element_by_name('公告').click()
         send_time2 = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/create_time').get_attribute('name')[0:-1]
         self.assertEqual(send_time1, send_time2, None)
@@ -123,13 +125,14 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/title').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/tv_ok').click()
+        time.sleep(2)
         first_time = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/create_time').get_attribute('name')[0:-1]
         self.assertNotEqual(first_time, send_time2, None)
     
     def test_classZone_dynamic(self):
         # 班级空间 - 动态
         self.driver.find_element_by_name('班级空间').click()
-        time.sleep(5)
+        time.sleep(10)
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/ll_senddynamic').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/edittext').clear()
@@ -141,7 +144,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/ly_done').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
         send_time1 = time.strftime('%Y-%m-%d %H:%M')[0:-1]
-        time.sleep(5)
+        time.sleep(10)
         send_time2 = self.driver.find_element_by_id('com.cmcc.andedu_phone:id/tv_time').get_attribute('name')[0:-4]
         self.assertEqual(send_time1, send_time2, None)
         # 点赞
@@ -154,7 +157,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/editText_send').clear()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/editText_send').send_keys('评论内容')
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/textView_send').click()
-        time.sleep(5)
+        time.sleep(10)
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/tv_commentcontent')
 
     def test_classZone_picture(self):
@@ -167,7 +170,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/album_name').clear()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/album_name').send_keys(album_date)
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
-        time.sleep(5)
+        time.sleep(10)
         self.driver.find_element_by_name('相册').click()
         self.driver.find_element_by_name(album_date).click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/common_title_right').click()
@@ -175,7 +178,7 @@ class JXHD_test(unittest.TestCase):
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/image').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/isselected').click()
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/ly_done').click()
-        time.sleep(5)
+        time.sleep(15)
         self.driver.find_element_by_id('com.cmcc.andedu_phone:id/item_image').click()
         self.driver.find_element_by_name('评论').click()
         self.driver.find_element_by_name('评论').click()
